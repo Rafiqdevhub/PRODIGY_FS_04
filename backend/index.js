@@ -3,6 +3,7 @@ const dbConnection = require("./config/dbConnection");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const userRoute = require("./routes/userRoute");
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,9 @@ app.use(cors(corsOption));
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
+
+// routes
+app.use("/api/v1/user", userRoute);
 
 app.listen(PORT, () => {
   dbConnection();
